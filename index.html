@@ -219,7 +219,87 @@ document.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].scree
 document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-touchStartX;if(drawer.classList.contains('open')&&dx < -65)closeDrawer();else if(!drawer.classList.contains('open')&&touchStartX<35&&dx>85)openDrawer();},{passive:true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
 const cards=[...document.querySelectorAll('.product')],search=document.getElementById('search');
-let activeCategory='All',cart=[];
+(async()=>{
+  const SUPABASE_URL='https://eanlsdwzmridqgwjqduu.supabase.co';
+  const SUPABASE_KEY='sb_publishable_ZTW3Ebfbz9Va0MRbN1euNg_9nnSuOfZ';
+
+  try{
+    const response=await fetch(
+      SUPABASE_URL+'/rest/v1/products?select=*&order=created_at.asc',
+      {
+        headers:{
+          apikey:SUPABASE_KEY,
+          Authorization:'Bearer '+SUPABASE_KEY
+        }
+      }
+    );
+
+    if(!response.ok) throw new Error(await response.text());
+
+    const products=await response.json();
+    const grid=document.getElementById('productGrid');
+
+    products.forEach(p=>{
+      let card=cards.find(c=>
+        c.dataset.name.toLowerCase()===p.name.toLowerCase()
+      );
+
+      if(!card){
+        card=cards[0].cloneNode(true);
+        card.querySelector('.discount')?.remove();
+
+        const image=card.querySelector('.product-photo');
+        if(image){
+          if(p.image_url){
+            image.src=p.image_url;
+          }else{
+            image.remove();
+            const visual=document.createElement('span');
+            visual.className='visual';
+            visual.textContent='🎁';
+            card.querySelector('.product-image').prepend(visual);
+          }
+        }
+
+        cards.push(card);
+        grid.appendChild(card);
+
+        card.querySelector('.cart-add').addEventListener('click',e=>{
+          e.stopPropagation();
+          addProductToCart(card);
+        });
+
+        card.addEventListener('click',e=>{
+          if(e.target.closest('.cart-add'))return;
+          openProductModal(card);
+        });
+      }else if(p.image_url){
+        const image=card.querySelector('.product-photo');
+        if(image) image.src=p.image_url;
+      }
+
+      card.dataset.name=p.name;
+      card.dataset.category=p.category;
+      card.dataset.audience=p.audience||'Men Women';
+
+      card.querySelector('.product-title').textContent=p.name;
+      card.querySelector('.product-brand').textContent=p.category.toUpperCase();
+      card.querySelector('.price').textContent='PKR '+p.price;
+      card.querySelector('.product-desc').textContent=
+        p.description||'Contact us for product details.';
+
+      const addButton=card.querySelector('.cart-add');
+      if(addButton) addButton.setAttribute('aria-label','Add '+p.name+' to cart');
+    });
+
+    renderProducts();
+    console.log('Supabase products loaded:',products.length);
+
+  }catch(error){
+    console.error('Supabase error:',error);
+  }
+})();
+ let activeCategory='All',cart=[];
 const navColors={All:'#171717',Women:'#a34f78',Men:'#285b83',Kids:'#b87925',New:'#8870a8','Ready to Wear':'#477b68',Sale:'#8e1d0d'};
 const shopNav=document.getElementById('shopNav');
 const navIndicator=document.createElement('span');navIndicator.className='nav-indicator';navIndicator.setAttribute('aria-hidden','true');shopNav.appendChild(navIndicator);
