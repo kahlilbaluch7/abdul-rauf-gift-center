@@ -228,8 +228,7 @@ const cards=[...document.querySelectorAll('.product')],search=document.getElemen
       SUPABASE_URL+'/rest/v1/products?select=*&order=created_at.asc',
       {
         headers:{
-          apikey:SUPABASE_KEY,
-          Authorization:'Bearer '+SUPABASE_KEY
+          apikey:SUPABASE_KEY
         }
       }
     );
