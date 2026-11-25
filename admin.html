@@ -167,7 +167,7 @@ async function saveProduct(){
       image_url = db.storage.from("product-images").getPublicUrl(path).data.publicUrl;
     }
 
-   const product = {name,price,category,audience,description,on_sale:onSale};
+   const product = {name,price,category,audience,description,discount_percent:discountPercent,on_sale:discountPercent>0};
     if(image_url) product.image_url = image_url;
 
     let result;
