@@ -145,7 +145,7 @@ async function saveProduct(){
   const name = document.getElementById("name").value.trim();
   const price = document.getElementById("price").value.trim();
   const category = document.getElementById("category").value;
-  const onSale = document.getElementById("onSale").checked;
+  const discountPercent = Number(document.getElementById("discountPercent").value);
   const audience = document.getElementById("audience").value;
   const description = document.getElementById("description").value.trim();
   const file = document.getElementById("photo").files[0];
