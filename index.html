@@ -279,8 +279,18 @@ const cards=[...document.querySelectorAll('.product')],search=document.getElemen
 
       card.dataset.name=p.name;
       card.dataset.category=p.category;
-     card.dataset.sale = p.on_sale ? 'true' : 'false';
+     card.dataset.sale = Number(p.discount_percent) > 0 ? 'true' : 'false';
       card.dataset.audience=p.audience||'Men Women';
+     const discountBadge = card.querySelector('.discount');
+
+if(discountBadge){
+  if(Number(p.discount_percent) > 0){
+    discountBadge.textContent = Number(p.discount_percent) + '% OFF';
+    discountBadge.style.display = 'inline-block';
+  }else{
+    discountBadge.remove();
+  }
+}
 
       card.querySelector('.product-title').textContent=p.name;
       card.querySelector('.product-brand').textContent=p.category.toUpperCase();
