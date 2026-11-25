@@ -319,7 +319,7 @@ function renderProducts(){
   const audienceMatch=['Women','Men','Kids'].includes(activeCategory)?audiences.includes(activeCategory):true;
   const newMatch=activeCategory!=='New'||!!c.querySelector('.discount')&&c.querySelector('.discount').textContent.trim().toUpperCase()==='NEW';
   const saleBadge=c.querySelector('.discount');
-  const saleMatch=activeCategory!=='Sale'||!!(saleBadge&&saleBadge.textContent.trim().toUpperCase()==='SALE')||!!c.querySelector('.old-price');
+  const saleMatch=activeCategory!=='Sale'||c.dataset.sale==='true'||!!(saleBadge&&saleBadge.textContent.trim().toUpperCase()==='SALE')||!!c.querySelector('.old-price');
   const match=categoryMatch&&audienceMatch&&newMatch&&saleMatch&&(!q||(c.innerText+' '+c.dataset.name+' '+c.dataset.category).toLowerCase().includes(q));
   c.hidden=!match;if(match){shown++;c.classList.remove('category-enter');void c.offsetWidth;c.classList.add('category-enter');}
  });
