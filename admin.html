@@ -58,6 +58,10 @@ button{background:#222;color:white;border:0;cursor:pointer}
 <option value="Men Women">Men & Women</option>
 <option value="All">All</option>
 </select>
+  <label>
+  <input type="checkbox" id="onSale">
+  On Sale
+  </label>
 <textarea id="description" placeholder="Product description"></textarea>
 <label>Product photo:</label>
 <input id="photo" type="file" accept="image/*">
@@ -136,6 +140,7 @@ async function saveProduct(){
   const name = document.getElementById("name").value.trim();
   const price = document.getElementById("price").value.trim();
   const category = document.getElementById("category").value;
+  const onSale = document.getElementById("onSale").checked;
   const audience = document.getElementById("audience").value;
   const description = document.getElementById("description").value.trim();
   const file = document.getElementById("photo").files[0];
@@ -157,7 +162,7 @@ async function saveProduct(){
       image_url = db.storage.from("product-images").getPublicUrl(path).data.publicUrl;
     }
 
-    const product = {name,price,category,audience,description};
+   const product = {name,price,category,audience,description,on_sale:onSale};
     if(image_url) product.image_url = image_url;
 
     let result;
