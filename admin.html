@@ -196,6 +196,7 @@ async function editProduct(id){
   document.getElementById("name").value = data.name || "";
   document.getElementById("price").value = data.price || "";
   document.getElementById("category").value = data.category || "Other";
+  document.getElementById("discountPercent").value = String(data.discount_percent || 0);
   document.getElementById("audience").value = data.audience || "All";
   document.getElementById("description").value = data.description || "";
   document.getElementById("photo").value = "";
