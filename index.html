@@ -245,7 +245,10 @@ const cards=[...document.querySelectorAll('.product')],search=document.getElemen
 
       if(!card){
         card=cards[0].cloneNode(true);
-        card.querySelector('.discount')?.remove();
+        const oldBadge = card.querySelector('.discount');
+if(oldBadge) oldBadge.remove();
+
+const image=card.querySelector('.product-photo');
 
         const image=card.querySelector('.product-photo');
         if(image){
@@ -280,6 +283,19 @@ const cards=[...document.querySelectorAll('.product')],search=document.getElemen
       card.dataset.name=p.name;
       card.dataset.category=p.category;
      card.dataset.sale = Number(p.discount_percent) > 0 ? 'true' : 'false';
+     let discountBadge = card.querySelector('.discount');
+
+if(Number(p.discount_percent) > 0){
+  if(!discountBadge){
+    discountBadge = document.createElement('span');
+    discountBadge.className = 'discount';
+    card.querySelector('.product-image').appendChild(discountBadge);
+  }
+  discountBadge.textContent = Number(p.discount_percent) + '% OFF';
+  discountBadge.style.display = 'inline-block';
+}else if(discountBadge){
+  discountBadge.remove();
+}
       card.dataset.audience=p.audience||'Men Women';
      const discountBadge = card.querySelector('.discount');
 
