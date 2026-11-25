@@ -332,7 +332,7 @@ document.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener('click',()
 window.addEventListener('resize',updateNavIndicator);
 requestAnimationFrame(updateNavIndicator);
 document.getElementById('filterBtn').addEventListener('click',()=>{
- const cats=['All','Women','Men','Kids','New','Ready to Wear','Sale','Gift Items','Gifts','Watches','Toys','Perfumes','Jewellery','Dupattas','Cosmetics','Supplements & Nutrition','Other & Accessories'];
+ const cats=['All','Women','Men','Kids','New','Sale','Gifts','Clothing','Cosmetics','Supplements & Nutrition','Other','Ready to Wear','Watches','Perfumes','Toys','Jewelry','Dupatta'];
  const choice=prompt('Choose a category:\n'+cats.map((x,i)=>(i+1)+'. '+x).join('\n'),cats.indexOf(activeCategory)>=0?String(cats.indexOf(activeCategory)+1):'1');
  if(choice!==null&&cats[Number(choice)-1]){activeCategory=cats[Number(choice)-1];renderProducts();}
 });
