@@ -279,6 +279,7 @@ const cards=[...document.querySelectorAll('.product')],search=document.getElemen
 
       card.dataset.name=p.name;
       card.dataset.category=p.category;
+     card.dataset.sale = p.on_sale ? 'true' : 'false';
       card.dataset.audience=p.audience||'Men Women';
 
       card.querySelector('.product-title').textContent=p.name;
