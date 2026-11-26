@@ -392,7 +392,7 @@ function addProductToCart(c){
  const item={
    name,
    qty:1,
-   image:images[0]||(photo?photo.src:''),
+   image:c.dataset.selectedImage||images[0]||(photo?photo.src:''),
    price:c.querySelector('.price')?.textContent.trim()||'Price on request',
    description:c.querySelector('.product-desc')?.textContent.trim()||'Contact us for product details and availability.'
  };
@@ -411,11 +411,13 @@ cards.forEach(c=>{
 });
 const productModal=document.getElementById('productModal');let selectedProduct=null;
 function openProductModal(c){
- selectedProduct=c;const source=c.querySelector('.product-image');const visual=document.getElementById('quickVisual');visual.innerHTML='';
+ selectedProduct=c;
+ c.dataset.selectedImage='';
+ const source=c.querySelector('.product-image');const visual=document.getElementById('quickVisual');visual.innerHTML='';
  const photo=source.querySelector('.product-photo');const pair=source.querySelector('.product-photo-pair');
  let galleryUrls=[];
  try{galleryUrls=JSON.parse(c.dataset.imageUrls||'[]');}catch(e){}
- if(!galleryUrls.length && photo?.src) galleryUrls=[photo.src];
+ c.dataset.selectedImage=galleryUrls[0]||'';
  if(galleryUrls.length>1){
    const gallery=document.createElement('div');gallery.className='quick-gallery';
    const main=document.createElement('img');main.className='quick-gallery-main';main.src=galleryUrls[0];main.alt=c.dataset.name||'Product photo';gallery.appendChild(main);
@@ -423,7 +425,12 @@ function openProductModal(c){
    galleryUrls.slice(0,10).forEach((url,index)=>{
      const btn=document.createElement('button');if(index===0)btn.classList.add('active');btn.type='button';
      const thumb=document.createElement('img');thumb.src=url;thumb.alt='Product photo '+(index+1);btn.appendChild(thumb);
-     btn.addEventListener('click',()=>{main.src=url;thumbs.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');});
+     btn.addEventListener('click',()=>{
+  c.dataset.selectedImage=url;
+  main.src=url;
+  thumbs.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+});
      thumbs.appendChild(btn);
    });
    gallery.appendChild(thumbs);visual.appendChild(gallery);
