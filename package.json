@@ -1,0 +1,12 @@
+{
+  "name": "abdul-rauf-gift-centre",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Abdul Rauf Gift Centre website with WhatsApp product preview images",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "sharp": "^0.34.2"
+  }
+}
