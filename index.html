@@ -408,7 +408,8 @@ function addProductToCart(c){
  renderCart();
 }
 function productShareLink(item){
- return location.origin+'/p/'+encodeURIComponent(item.id||'');
+ const params=new URLSearchParams({id:item.id||'',photo:String(item.imageIndex||0)});
+ return location.origin+'/.netlify/functions/product-share?'+params.toString();
 }
 cards.forEach(c=>{
  c.querySelector('.cart-add').addEventListener('click',e=>{e.stopPropagation();addProductToCart(c);});
