@@ -37,7 +37,7 @@ export default async (request) => {
     const title = html(product.name || 'Product');
     const price = html(product.price ? `PKR ${product.price}` : 'Price on request');
     const description = html(product.description || 'View this product at Abdul Rauf Gift Centre.');
-    const canonical = `${url.origin}/.netlify/functions/product-share?id=${encodeURIComponent(id)}&photo=${photoIndex}`;
+    const canonical = `${url.origin}/p/${encodeURIComponent(id)}`;
     const previewUrl = `${canonical}&preview=1`;
     const page = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} | Abdul Rauf Gift Centre</title><meta name="description" content="${description}"><meta property="og:type" content="product"><meta property="og:title" content="${title} | Abdul Rauf Gift Centre"><meta property="og:description" content="${price}"><meta property="og:image" content="${html(previewUrl)}"><meta property="og:url" content="${html(canonical)}"><meta name="twitter:card" content="summary_large_image"><style>body{font-family:Arial,sans-serif;margin:0;background:#f5eee8;color:#171717}.wrap{max-width:620px;margin:28px auto;padding:18px;background:white;border-radius:16px;text-align:center}img{width:100%;max-height:70vh;object-fit:contain;background:#fffaf3;border-radius:10px}h1{font-size:22px}p{color:#555}a{color:inherit;text-decoration:none}</style></head><body><a href="${html(image)}"><main class="wrap"><img src="${html(image)}" alt="${title}"><h1>${title}</h1><strong>${price}</strong><p>${description}</p><p>Abdul Rauf Gift Centre</p></main></a></body></html>`;
     return new Response(page, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' } });
