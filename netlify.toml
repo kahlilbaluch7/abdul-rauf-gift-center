@@ -15,14 +15,3 @@
   from = "/index-multiple-photos"
   to = "/"
   status = 301
-
-[[redirects]]
-  from = "/admin-10-separate-photo-inputs"
-  to = "/admin"
-  status = 301
-
-  [[redirects]]
-  from = "/p/*"
-  to = "/.netlify/functions/product-share?id=:splat"
-  status = 200
-  force = true
