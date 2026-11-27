@@ -2,6 +2,11 @@
   publish = "."
   functions = "netlify/functions"
 
+# The Supabase publishable key is meant to be public (it is used in the
+# storefront and admin pages), so the secret scanner must not fail builds on it.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_ANON_KEY"
+
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["sharp"]
