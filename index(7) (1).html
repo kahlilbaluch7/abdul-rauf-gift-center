@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#f5eee8" name="theme-color"/>
+<title>Abdul Rauf Gift Center | Shop Online</title>
+<style>
+:root{--cream:#f5eee8;--paper:#fff;--ink:#171717;--muted:#686868;--gold:#b99755;--green:#174d3b;--sale:#8e1d0d;--line:#e5ded8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+.topbar{background:#191919;color:#fff;text-align:center;padding:8px 12px;font-size:11px;letter-spacing:1.2px}
+header{background:var(--cream);position:sticky;top:0;z-index:15;border-bottom:1px solid #e6ddd5}
+.header-main{max-width:1400px;margin:auto;height:76px;padding:0 4.5%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px}
+.icon-btn{border:0;background:transparent;font-size:25px;cursor:pointer;padding:8px;color:#111}
+.logo{text-align:center;font-family:'Playfair Display', serif;font-size:25px;letter-spacing:3px;white-space:nowrap}
+.logo small{display:block;font-family:Arial,sans-serif;font-size:8px;letter-spacing:3px;margin-top:4px;color:#6b5734}
+.header-actions{display:flex;justify-content:flex-end;gap:13px}
+.search-wrap{max-width:1400px;margin:0 auto;padding:0 4.5% 14px;position:relative}
+.search-wrap input{width:100%;border:1px solid #d8cec7;border-radius:24px;background:#fff9f5;padding:14px 48px 14px 20px;outline:none;font-size:15px}
+.search-icon{position:absolute;right:calc(4.5% + 16px);top:11px;font-size:21px;color:#555}
+.main-nav{position:relative;display:flex;justify-content:center;gap:clamp(18px,5vw,65px);padding:13px 10px 19px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.main-nav::-webkit-scrollbar{display:none}
+.main-nav a{position:relative;flex:0 0 auto;font-size:12px;font-weight:700;letter-spacing:.5px;color:#555;transition:color .25s ease,transform .25s ease}
+.main-nav a:hover{transform:translateY(-2px)}
+.main-nav a.active{color:var(--active-nav-color,#171717)}
+.main-nav .nav-indicator{position:absolute;bottom:9px;left:0;height:3px;width:0;border-radius:8px;background:var(--active-nav-color,#171717);transform:translateX(0);transition:transform .38s cubic-bezier(.2,.8,.2,1),width .38s cubic-bezier(.2,.8,.2,1),background-color .25s ease;pointer-events:none}
+.product.category-enter{animation:categoryProductIn .42s cubic-bezier(.2,.75,.25,1) both}
+@keyframes categoryProductIn{from{opacity:0;transform:translateY(13px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.brand-strip{display:flex;align-items:center;justify-content:space-around;gap:18px;padding:18px 4%;overflow:hidden;border-bottom:1px solid #eee;color:#222}
+.brand-strip span{font-family:'Playfair Display', serif;font-weight:bold;font-size:clamp(12px,2vw,20px);white-space:nowrap;letter-spacing:-.5px}
+.hero-banner{background:linear-gradient(90deg,#eee3d7,#d4c0aa);min-height:105px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#3a3028}
+.hero-banner strong{font-family:'Playfair Display', serif;font-size:clamp(20px,3vw,30px);font-weight:500;letter-spacing:1px}
+.page{max-width:1400px;margin:auto;padding:24px 4.5% 70px}
+.breadcrumb{font-size:13px;color:#686868;margin:2px 0 24px}.breadcrumb b{color:#171717;font-weight:500}
+h1{font-size:30px;margin:0 0 18px;font-weight:750;letter-spacing:-.8px}
+.promo-strip{display:flex;gap:12px;overflow:hidden;margin:0 0 48px;white-space:nowrap}
+.promo-strip span{background:#f3f3f3;border-radius:22px;padding:10px 20px;font-size:13px;letter-spacing:.5px;color:#555}
+.toolbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;margin-bottom:36px}
+.filter-btn,.sort-select{height:53px;border:1px solid #cfcfcf;border-radius:10px;background:white;padding:0 16px;font-size:15px}
+.filter-btn{text-align:left;cursor:pointer}.sort-label{text-align:center;font-size:14px}.sort-select{width:100%;max-width:210px;justify-self:end}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 16px}
+.product{min-width:0}.product-image{position:relative;aspect-ratio: .78;background:#f2eee9;display:grid;place-items:center;overflow:hidden}
+.product-image .visual{font-size:clamp(65px,8vw,110px);filter:drop-shadow(0 8px 8px #00000013)}
+.product-image .product-photo{width:100%;height:100%;object-fit:contain;display:block;padding:8px;background:#fffaf3}.product-photo-pair{width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:3px;background:#fffaf3;padding:5px}.product-photo-pair img{width:50%;height:100%;object-fit:contain;min-width:0}
+.product:nth-child(4n+2) .product-image{background:#eee9e1}.product:nth-child(4n+3) .product-image{background:#f4ece7}.product:nth-child(4n) .product-image{background:#eceee8}
+.discount{position:absolute;top:8px;right:10px;z-index:2;width:78px;height:78px;padding:13px 5px 10px;background:radial-gradient(circle,#a50909 0 55%,#ffb72c 56% 70%,#8b5b12 71% 75%,#ffe08a 76% 100%);color:#ffd66a;clip-path:polygon(50% 0%,60% 7%,72% 2%,78% 13%,91% 13%,93% 27%,100% 36%,94% 50%,100% 63%,92% 73%,91% 87%,77% 88%,69% 98%,56% 93%,44% 100%,33% 91%,19% 94%,15% 80%,3% 73%,8% 59%,0 47%,8% 36%,5% 22%,19% 18%,27% 5%,40% 9%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-weight:900;line-height:1;text-shadow:0 1px 1px #5b1700;letter-spacing:.2px;box-shadow:0 2px 5px #0002}.discount:before,.discount:after{content:none}.discount .sale-word{font-size:15px;letter-spacing:.5px}.discount .sale-up{display:none}.discount .sale-percent{font-size:23px;margin:2px 0}.discount .sale-off{font-size:12px;letter-spacing:1px}
+.cart-add{position:absolute;right:10px;bottom:10px;width:48px;height:48px;border:0;border-radius:10px;background:#252525bd;color:#fff;font-size:23px;cursor:pointer}
+.product-info{padding:13px 4px 0}.product-brand{font-size:11px;letter-spacing:1px;color:#777;margin-bottom:6px}.product-title{font-size:15px;font-weight:800;margin:0 0 7px;text-transform:uppercase}.product-desc{font-size:12px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:11px}
+.price{font-size:15px;font-weight:800;color:var(--sale)}.old-price{font-size:13px;color:#222;text-decoration:line-through;margin-left:8px;font-weight:600}
+.no-results{grid-column:1/-1;padding:40px;text-align:center;color:#777}
+footer{background:#191919;color:#fff;padding:38px 5%;text-align:center;font-size:13px;line-height:1.9}
+.cart-float{position:fixed;right:18px;bottom:78px;z-index:20;border:0;border-radius:50px;background:#171717;color:white;padding:14px 19px;box-shadow:0 5px 25px #0003;cursor:pointer}
+.cart-count{display:inline-grid;place-items:center;background:var(--gold);color:#111;border-radius:50%;width:22px;height:22px;margin-left:7px;font-size:12px;font-weight:bold}
+.checkout{display:none;position:fixed;inset:0;background:#0009;z-index:40;padding:16px;overflow:auto}.checkout.open{display:grid;place-items:center}
+.checkout-panel{width:min(100%,540px);background:white;padding:24px;border-radius:14px;max-height:95vh;overflow:auto}
+.checkout-panel h2{margin:0 0 8px}.checkout-panel input,.checkout-panel textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:12px;margin:7px 0;font:inherit}
+.checkout-panel textarea{min-height:75px}.cart-lines{padding:12px 0;border-block:1px solid #eee;margin:12px 0}.cart-line{display:flex;justify-content:space-between;padding:7px 0;font-size:14px}
+.cart-line button{border:1px solid #ddd;background:#fff;border-radius:5px;padding:2px 9px;margin-left:4px}
+.payment-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.payment-option{border:1px solid #ddd;border-radius:8px;padding:10px;font-size:13px;display:flex;gap:7px;align-items:center}.payment-option input{width:auto;margin:0}
+.checkout-actions{display:flex;gap:9px;flex-wrap:wrap}.checkout-actions button{border:0;border-radius:8px;padding:13px 16px;font-weight:bold;cursor:pointer}.send-order{background:var(--green);color:#fff}.close-order{background:#eee}
+@media(max-width:900px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* More drawer */
+.drawer-backdrop{position:fixed;inset:0;background:#0007;z-index:50;opacity:0;visibility:hidden;transition:.25s}
+.more-drawer{position:fixed;top:0;left:0;bottom:0;width:min(84vw,360px);background:#fbf8f4;z-index:51;padding:26px 24px;transform:translateX(-105%);transition:transform .28s ease;box-shadow:10px 0 35px #0002}
+.more-drawer.open{transform:translateX(0)}
+.drawer-backdrop.open{opacity:1;visibility:visible}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.drawer-title{font-family:'Playfair Display',serif;font-size:24px}
+.drawer-close{border:0;background:transparent;font-size:28px;cursor:pointer}
+.drawer-links{display:grid;gap:0;margin-top:18px}
+.drawer-links a{padding:17px 2px;border-bottom:1px solid var(--line);font-size:16px;font-weight:600}
+.drawer-links a:after{content:'›';float:right;color:#927343;font-size:22px;line-height:16px}
+.drawer-note{margin-top:26px;color:#777;font-size:12px;line-height:1.7}
+@media(max-width:620px){
+ .topbar{font-size:10px}.header-main{height:67px;padding:0 4%;grid-template-columns:42px 1fr 85px;gap:5px}
+ .logo{font-size:21px;letter-spacing:2px}.logo small{font-size:7px;letter-spacing:2px}
+ .header-actions{gap:2px}.icon-btn{font-size:22px;padding:5px}
+ .search-wrap{padding:0 4% 12px}.search-wrap input{padding:13px 42px 13px 17px;font-size:14px}.search-icon{right:calc(4% + 14px);top:9px}
+ .main-nav{justify-content:flex-start;gap:29px;padding:13px 5% 19px}.main-nav a{font-size:11px}
+ .brand-strip{justify-content:flex-start;gap:27px;padding:16px 4%}.brand-strip span{font-size:15px}
+ .hero-banner{min-height:78px}.page{padding:20px 4% 55px}.breadcrumb{margin-bottom:20px}
+ h1{font-size:25px}.promo-strip{margin-bottom:38px}.promo-strip span{font-size:11px;padding:9px 15px}
+ .toolbar{grid-template-columns:1fr auto;gap:10px;margin-bottom:28px}.filter-btn{height:49px;font-size:14px}
+ .sort-label{display:none}.sort-select{height:49px;width:155px;font-size:13px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 9px}
+ .product-image{aspect-ratio:.76}.discount{top:6px;right:6px;width:62px;height:62px;padding:10px 4px 8px}.discount .sale-word{font-size:12px}.discount .sale-percent{font-size:18px;margin:1px 0}.discount .sale-off{font-size:10px}
+ .cart-add{width:42px;height:42px;right:8px;bottom:8px}.product-info{padding:11px 3px 0}.product-title{font-size:13px}.product-desc{font-size:11px}.price{font-size:13px}.old-price{font-size:11px;margin-left:4px}
+}
+
+/* Product quick-view: focus modal with soft zoom and blurred background */
+body.product-modal-open{overflow:hidden}
+#productModal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(18,16,14,.28);backdrop-filter:blur(0);opacity:0;visibility:hidden;transition:opacity .32s ease,backdrop-filter .32s ease,visibility .32s}
+#productModal.open{opacity:1;visibility:visible;backdrop-filter:blur(9px)}
+#productModal .quick-card{position:relative;width:min(900px,94vw);max-height:min(88vh,850px);overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,4vw,38px);padding:clamp(18px,3vw,34px);border-radius:22px;background:#fffdf9;box-shadow:0 28px 90px #0005;transform:translateY(28px) scale(.78);opacity:0;transition:transform .42s cubic-bezier(.2,.85,.25,1),opacity .3s ease}
+#productModal.open .quick-card{transform:translateY(0) scale(1);opacity:1}
+#productModal .quick-visual{min-height:320px;aspect-ratio:.82;background:#f5eee8;border-radius:15px;display:grid;place-items:center;overflow:hidden}
+#productModal .quick-visual img{width:100%;height:100%;max-height:58vh;object-fit:contain;background:#fffaf3}
+#productModal .quick-gallery{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:10px;box-sizing:border-box}
+#productModal .quick-gallery-main{width:100%;height:calc(100% - 72px);min-height:220px;object-fit:contain}
+#productModal .quick-thumbs{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;max-width:100%}
+#productModal .quick-thumbs button{width:54px;height:54px;padding:2px;border:2px solid #ddd;border-radius:7px;background:#fff;cursor:pointer}
+#productModal .quick-thumbs button.active{border-color:#9b6a18}
+#productModal .quick-thumbs img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+#productModal .quick-visual .visual{font-size:clamp(100px,18vw,190px)}
+#productModal .quick-info{align-self:center;padding:10px 4px}
+#productModal .quick-brand{font-size:11px;letter-spacing:2px;color:#88734e;margin-bottom:10px}
+#productModal .quick-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);line-height:1.15;margin:0 0 14px}
+#productModal .quick-price{font-size:23px;font-weight:800;color:#8e1d0d;margin:0 0 18px}
+#productModal .quick-desc{font-size:15px;line-height:1.75;color:#555;margin:0 0 24px}
+#productModal .quick-add{width:100%;border:0;border-radius:12px;padding:16px;background:#191919;color:#fff;font-weight:700;cursor:pointer;transition:background .2s,transform .2s}
+#productModal .quick-add:hover{background:#174d3b;transform:translateY(-2px)}
+#productModal .quick-close{position:absolute;right:12px;top:10px;z-index:2;width:42px;height:42px;border:0;border-radius:50%;background:#fff;color:#171717;font-size:28px;box-shadow:0 3px 14px #0002;cursor:pointer}
+.product{cursor:pointer}.product .cart-add{z-index:1}
+.drawer-links a{display:block;padding:14px 2px;border-bottom:1px solid #e8e0d8;color:inherit;text-decoration:none}
+.info-page{max-width:900px;margin:30px auto;padding:28px 5%;line-height:1.8;background:#fffdf9;border:1px solid #eee5dc;border-radius:16px}
+.info-page h2{font-family:'Playfair Display',serif;font-weight:500}
+@media(max-width:650px){
+#productModal{padding:10px}
+#productModal .quick-card{grid-template-columns:1fr;gap:14px;padding:16px;max-height:92vh;width:min(520px,96vw);overflow-y:auto}
+#productModal .quick-visual{min-height:0;height:auto;max-height:none;aspect-ratio:auto;display:block;overflow:visible}
+#productModal .quick-gallery{height:auto;min-height:0;justify-content:flex-start;gap:9px;padding:8px}
+#productModal .quick-gallery-main{display:block;width:100%;height:min(38vh,300px);min-height:150px;max-height:38vh;object-fit:contain}
+#productModal .quick-thumbs{display:flex;width:100%;max-width:100%;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;padding:3px 2px 8px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+#productModal .quick-thumbs button{flex:0 0 54px;width:54px;height:54px}
+#productModal .quick-visual img{max-height:34vh}
+#productModal .quick-info{padding:4px 2px 8px}
+#productModal .quick-title{font-size:25px;margin-bottom:8px}
+#productModal .quick-price{font-size:20px;margin-bottom:9px}
+#productModal .quick-desc{font-size:13px;line-height:1.5;margin-bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){#productModal,#productModal .quick-card,#productModal .quick-add{transition:none}}
+
+</style>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div class="topbar">WELCOME TO ABDUL RAUF GIFT CENTER · TURBAT, BALOCHISTAN</div>
+<header>
+<div class="header-main">
+<button aria-label="Open More menu" class="icon-btn" id="moreBtn" title="More">☰</button>
+<a class="logo" href="#home">ABDUL RAUF<small>GIFT CENTER · ONLINE SHOPPING</small></a>
+<div class="header-actions"><a aria-label="Contact" class="icon-btn" href="#contact">♙</a><button aria-label="Shopping cart" class="icon-btn" id="headerCart">🛒</button></div>
+</div>
+<div class="search-wrap"><input id="search" placeholder="Search for products" type="search"/><span class="search-icon">⌕</span></div>
+<nav class="main-nav" id="shopNav">
+<a data-nav="All" href="#products">ALL</a><a data-nav="Women" href="#products">WOMEN</a><a data-nav="Men" href="#products">MEN</a><a data-nav="Kids" href="#products">KIDS</a><a data-nav="New" href="#products">NEW IN</a><a data-nav="Ready to Wear" href="#products">READY TO WEAR</a><a class="sale" data-nav="Sale" href="#products">SALE</a>
+</nav>
+</header>
+<div class="brand-strip"><span>AR GIFT</span><span>✦ PREMIUM</span><span>STYLE &amp; GIFT</span><span>RAUF COLLECTION</span><span>✧ QUALITY FINDS</span></div>
+<div class="hero-banner" id="home"><strong>GIFTING MADE SPECIAL · DISCOVER SOMETHING LOVELY</strong></div>
+<main class="page">
+<div class="breadcrumb">Home  /  <b>All Products</b></div>
+<h1>SHOP ALL</h1>
+<div class="promo-strip"><span>THE GIFT EDIT — NEW ARRIVALS</span><span>EVERYDAY FINDS — SHOP NOW</span><span>THE PERFECT GIFT — EXPLORE</span></div>
+<div class="toolbar">
+<button class="filter-btn" id="filterBtn">☰   Filter: <span id="filterName">All</span></button>
+<span class="sort-label">Sort By:</span>
+<select class="sort-select" id="sort"><option value="featured">Featured</option><option value="az">Name: A to Z</option><option value="za">Name: Z to A</option></select>
+</div>
+<div class="products" id="productGrid">
+<template id="productTemplate"> <article class="product" data-audience="Women" data-category="Cosmetics" data-name="Faha Gold Beauty Cream"><div class="product-image"><span class="discount">NEW</span><img alt="Faha Gold Beauty Cream product packaging" class="product-photo" src=""/><button aria-label="Add Faha Gold Beauty Cream to cart" class="cart-add">🛒</button></div><div class="product-info"><div class="product-brand">COSMETICS</div><h3 class="product-title">Faha Gold Beauty Cream</h3><div class="product-desc">Beauty cream · See product packaging for ingredients and directions</div><span class="price">PKR 500</span></div></article></template>
+
+
+
+
+
+
+
+</div>
+</main>
+<section id="contact" style="padding:35px 5%;background:#f5eee8;text-align:center;line-height:1.8">
+<h2 style="font-family:'Playfair Display', serif;font-weight:500">Visit Abdul Rauf Gift Center</h2>
+<p>Haji Shamby Market, Turbat, Kech, Balochistan, Pakistan</p>
+<p>WhatsApp: <a href="https://wa.me/923112348724">0311 2348724</a> · TikTok: <a href="https://www.tiktok.com/@jaleelrauf9t9?_r=1&amp;_t=ZS-9BfPEzeFCAG" rel="noopener" target="_blank">@jaleelrauf9t9</a></p>
+</section>
+<div aria-hidden="true" id="productModal"><div aria-labelledby="quickTitle" aria-modal="true" class="quick-card" role="dialog"><button aria-label="Close product details" class="quick-close" type="button">×</button><div class="quick-visual" id="quickVisual"></div><div class="quick-info"><div class="quick-brand" id="quickBrand"></div><h2 class="quick-title" id="quickTitle"></h2><div class="quick-price" id="quickPrice"></div><p class="quick-desc" id="quickDesc"></p><button class="quick-add" id="quickAdd" type="button">ADD TO CART</button></div></div></div>
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside aria-hidden="true" aria-label="More menu" class="more-drawer" id="moreDrawer">
+<div class="drawer-head"><span class="drawer-title">More</span><button aria-label="Close menu" class="drawer-close" id="drawerClose">×</button></div>
+<nav class="drawer-links">
+<a data-drawer-close="" href="#contact">Contact Us</a>
+<a data-drawer-close="" href="#customer-care">Customer Care</a>
+<a data-drawer-close="" href="#track-order">Track Order</a>
+<a data-drawer-close="" href="#delivery-returns">Delivery &amp; Returns</a>
+<a data-drawer-close="" href="#about">About</a>
+<a href="https://www.tiktok.com/@jaleelrauf9t9?_r=1&amp;_t=ZS-9BfPEzeFCAG" rel="noopener" target="_blank">TikTok · @jaleelrauf9t9</a>
+</nav>
+<p class="drawer-note">Abdul Rauf Gift Center<br/>Haji Shamby Market, Turbat, Kech, Balochistan</p>
+</aside>
+<section id="customer-care" style="padding:30px 5%;text-align:center;line-height:1.8">
+<h2 style="font-family:'Playfair Display',serif;font-weight:500">Customer Care</h2>
+<p>For product availability, orders and delivery questions, contact us on WhatsApp.</p>
+<p><a href="https://wa.me/923112348724">Chat with us · 0311 2348724</a></p>
+</section>
+<section class="info-page" id="track-order"><h2>Track Your Order</h2><p>To check your order status, contact our store on WhatsApp with your name and order details. Our team will help confirm the latest status.</p><p><a href="https://wa.me/923112348724?text=Hello%20Abdul%20Rauf%20Gift%20Center%2C%20I%20want%20to%20check%20my%20order%20status." rel="noopener" target="_blank">Track order on WhatsApp · 0311 2348724</a></p></section>
+<section class="info-page" id="delivery-returns"><h2>Delivery &amp; Returns</h2><p>For delivery availability, estimated delivery time, return eligibility or an exchange, please contact us before placing your order. Return and exchange requests are reviewed by the store according to the product condition and order details.</p><p><a href="https://wa.me/923112348724?text=Hello%20Abdul%20Rauf%20Gift%20Center%2C%20please%20share%20your%20delivery%20and%20return%20details." rel="noopener" target="_blank">Ask about delivery &amp; returns on WhatsApp</a></p></section>
+<section id="about" style="padding:30px 5%;background:#f5eee8;text-align:center;line-height:1.8">
+<h2 style="font-family:'Playfair Display',serif;font-weight:500">About Abdul Rauf Gift Center</h2>
+<p>Your local destination for gifts, watches, toys, perfumes, jewellery, dupattas, cosmetics, nutrition products and accessories in Turbat.</p>
+</section>
+<footer>ABDUL RAUF GIFT CENTER<br/>Shop with confidence · Turbat, Balochistan<br/><a href="https://www.tiktok.com/@jaleelrauf9t9?_r=1&amp;_t=ZS-9BfPEzeFCAG" rel="noopener" style="color:#e6d3aa" target="_blank">TikTok · @jaleelrauf9t9</a><br/>© 2026 Abdul Rauf Gift Center</footer>
+<button class="cart-float" id="openCart">🛒 CART <span class="cart-count" id="cartCount">0</span></button>
+<div aria-modal="true" class="checkout" id="checkout" role="dialog">
+<div class="checkout-panel">
+<h2>Your Shopping Cart</h2><p style="color:#777;font-size:13px">Review your products and enter your order details.</p>
+<div class="cart-lines" id="cartLines"><p style="color:#777">Your cart is empty.</p></div>
+<form id="orderForm">
+<input id="customerName" placeholder="Your full name" required=""/>
+<input id="customerPhone" placeholder="Your phone number" required="" type="tel"/>
+<textarea id="customerAddress" placeholder="Delivery address or shop pickup details" required=""></textarea>
+<textarea id="customerNote" placeholder="Extra instructions (optional)"></textarea>
+<strong>Payment method</strong>
+<div class="payment-options">
+<label class="payment-option"><input name="payment" required="" type="radio" value="Cash on Delivery"/>Cash on Delivery</label>
+<label class="payment-option"><input name="payment" type="radio" value="Cash at Shop"/>Cash at Shop</label>
+<label class="payment-option"><input name="payment" type="radio" value="Easypaisa"/>Easypaisa</label>
+<label class="payment-option"><input name="payment" type="radio" value="JazzCash"/>JazzCash</label>
+<label class="payment-option"><input name="payment" type="radio" value="Bank Transfer"/>Bank Transfer</label>
+</div>
+<div class="checkout-actions"><button class="send-order" type="submit">Place Order via WhatsApp</button><button class="close-order" id="closeCart" type="button">Continue Shopping</button></div>
+</form>
+<p style="font-size:11px;color:#777;line-height:1.5">The shop will confirm product availability, price, delivery and payment details through WhatsApp.</p>
+</div>
+</div>
+<script>
+const drawer=document.getElementById('moreDrawer'),backdrop=document.getElementById('drawerBackdrop');
+function openDrawer(){drawer.classList.add('open');backdrop.classList.add('open');drawer.setAttribute('aria-hidden','false');}
+function closeDrawer(){drawer.classList.remove('open');backdrop.classList.remove('open');drawer.setAttribute('aria-hidden','true');}
+document.getElementById('moreBtn').addEventListener('click',openDrawer);
+document.getElementById('drawerClose').addEventListener('click',closeDrawer);
+backdrop.addEventListener('click',closeDrawer);
+document.querySelectorAll('[data-drawer-close]').forEach(a=>a.addEventListener('click',closeDrawer));
+let touchStartX=0;
+document.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-touchStartX;if(drawer.classList.contains('open')&&dx < -65)closeDrawer();else if(!drawer.classList.contains('open')&&touchStartX<35&&dx>85)openDrawer();},{passive:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+const productTemplate=document.getElementById('productTemplate').content.querySelector('.product');
+const cards=[],search=document.getElementById('search');
+(async()=>{
+  const SUPABASE_URL='https://eanlsdwzmridqgwjqduu.supabase.co';
+  const SUPABASE_KEY='sb_publishable_ZTW3Ebfbz9Va0MRbN1euNg_9nnSuOfZ';
+
+  try{
+    const response=await fetch(
+      SUPABASE_URL+'/rest/v1/products?select=*&order=created_at.asc',
+      {
+        headers:{
+          apikey:SUPABASE_KEY
+        }
+      }
+    );
+
+    if(!response.ok) throw new Error(await response.text());
+
+    const products=await response.json();
+    const grid=document.getElementById('productGrid');
+
+    products.forEach(p=>{
+      const productImages = Array.isArray(p.image_urls) && p.image_urls.length ? p.image_urls : (p.image_url ? [p.image_url] : []);
+      let card=cards.find(c=>
+        c.dataset.name.toLowerCase()===p.name.toLowerCase()
+      );
+
+      if(!card){
+        card=productTemplate.cloneNode(true);
+        const oldBadge = card.querySelector('.discount');
+if(oldBadge) oldBadge.remove();
+
+        const image=card.querySelector('.product-photo');
+        if(image){
+          if(productImages.length){
+            image.src=productImages[0];
+          }else{
+            image.remove();
+            const visual=document.createElement('span');
+            visual.className='visual';
+            visual.textContent='🎁';
+            card.querySelector('.product-image').prepend(visual);
+          }
+        }
+
+        cards.push(card);
+        grid.appendChild(card);
+
+        card.querySelector('.cart-add').addEventListener('click',e=>{
+          e.stopPropagation();
+          addProductToCart(card);
+        });
+
+        card.addEventListener('click',e=>{
+          if(e.target.closest('.cart-add'))return;
+          openProductModal(card);
+        });
+      }else if(productImages.length){
+        const image=card.querySelector('.product-photo');
+        if(image) image.src=productImages[0];
+      }
+
+      card.dataset.imageUrls=JSON.stringify(productImages);
+      card.dataset.id=p.id||'';
+      card.dataset.name=p.name;
+      card.dataset.category=p.category;
+     card.dataset.sale = Number(p.discount_percent) > 0 ? 'true' : 'false';
+     let discountBadge = card.querySelector('.discount');
+     if(Number(p.discount_percent) > 0){
+       if(!discountBadge){
+         discountBadge = document.createElement('span');
+         discountBadge.className = 'discount';
+         card.querySelector('.product-image').appendChild(discountBadge);
+       }
+       discountBadge.innerHTML = '<span class="sale-word">SALE</span><span class="sale-percent">' + Number(p.discount_percent) + '%</span><span class="sale-off">OFF</span>';
+       discountBadge.style.display = 'flex';
+     }else if(discountBadge){
+       discountBadge.remove();
+     }
+     card.dataset.audience=p.audience||'Men Women';
+
+      card.querySelector('.product-title').textContent=p.name;
+      card.querySelector('.product-brand').textContent=p.category.toUpperCase();
+      card.querySelector('.price').textContent='PKR '+p.price;
+      card.querySelector('.product-desc').textContent=
+        p.description||'Contact us for product details.';
+
+      const addButton=card.querySelector('.cart-add');
+      if(addButton) addButton.setAttribute('aria-label','Add '+p.name+' to cart');
+    });
+
+    renderProducts();
+    console.log('Supabase products loaded:',products.length);
+
+  }catch(error){
+    console.error('Supabase error:',error);
+  }
+})();
+ let activeCategory='All',cart=[];
+const navColors={All:'#171717',Women:'#a34f78',Men:'#285b83',Kids:'#b87925',New:'#8870a8','Ready to Wear':'#477b68',Sale:'#8e1d0d'};
+const shopNav=document.getElementById('shopNav');
+const navIndicator=document.createElement('span');navIndicator.className='nav-indicator';navIndicator.setAttribute('aria-hidden','true');shopNav.appendChild(navIndicator);
+function updateNavIndicator(){
+ const links=[...shopNav.querySelectorAll('[data-nav]')],active=links.find(a=>a.dataset.nav===activeCategory)||links[0];
+ links.forEach(a=>{const yes=a===active;a.classList.toggle('active',yes);if(yes)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+ const navRect=shopNav.getBoundingClientRect(),linkRect=active.getBoundingClientRect();
+ navIndicator.style.width=linkRect.width+'px';navIndicator.style.transform=`translateX(${linkRect.left-navRect.left+shopNav.scrollLeft}px)`;
+ shopNav.style.setProperty('--active-nav-color',navColors[activeCategory]||'#b99755');
+ if(active)active.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});
+}
+function renderProducts(){
+ const q=search.value.trim().toLowerCase();let shown=0;
+ cards.forEach(c=>{
+  const audiences=(c.dataset.audience||'').split(/\s+/);
+  const categoryMatch=['All','Women','Men','Kids','New','Sale'].includes(activeCategory)||c.dataset.category===activeCategory;
+  const audienceMatch=['Women','Men','Kids'].includes(activeCategory)?audiences.includes(activeCategory):true;
+  const newMatch=activeCategory!=='New'||!!c.querySelector('.discount')&&c.querySelector('.discount').textContent.trim().toUpperCase()==='NEW';
+  const saleBadge=c.querySelector('.discount');
+  const saleMatch=activeCategory!=='Sale'||c.dataset.sale==='true'||!!(saleBadge&&saleBadge.textContent.trim().toUpperCase()==='SALE')||!!c.querySelector('.old-price');
+  const match=categoryMatch&&audienceMatch&&newMatch&&saleMatch&&(!q||(c.innerText+' '+c.dataset.name+' '+c.dataset.category).toLowerCase().includes(q));
+  c.hidden=!match;if(match){shown++;c.classList.remove('category-enter');void c.offsetWidth;c.classList.add('category-enter');}
+ });
+ let grid=document.getElementById('productGrid');let old=grid.querySelector('.no-results');if(old)old.remove();
+ if(!shown){let d=document.createElement('div');d.className='no-results';d.textContent=activeCategory==='Sale'?'No sale items right now. Check back soon.':'No products found. Try another search.';grid.appendChild(d);}
+ document.getElementById('filterName').textContent=activeCategory;
+ updateNavIndicator();
+}
+search.addEventListener('input',renderProducts);
+document.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener('click',()=>{activeCategory=a.dataset.nav;renderProducts();}));
+window.addEventListener('resize',updateNavIndicator);
+requestAnimationFrame(updateNavIndicator);
+document.getElementById('filterBtn').addEventListener('click',()=>{
+ const cats=['All','Women','Men','Kids','New','Sale','Gifts','Clothing','Cosmetics','Supplements & Nutrition','Other','Ready to Wear','Watches','Perfumes','Toys','Jewelry','Dupatta'];
+ const choice=prompt('Choose a category:\n'+cats.map((x,i)=>(i+1)+'. '+x).join('\n'),cats.indexOf(activeCategory)>=0?String(cats.indexOf(activeCategory)+1):'1');
+ if(choice!==null&&cats[Number(choice)-1]){activeCategory=cats[Number(choice)-1];renderProducts();}
+});
+document.getElementById('sort').addEventListener('change',e=>{
+ const sorted=[...cards].sort((a,b)=>e.target.value==='az'?a.dataset.name.localeCompare(b.dataset.name):e.target.value==='za'?b.dataset.name.localeCompare(a.dataset.name):cards.indexOf(a)-cards.indexOf(b));
+ const grid=document.getElementById('productGrid');sorted.forEach(c=>grid.appendChild(c));
+});
+const checkout=document.getElementById('checkout'),cartLines=document.getElementById('cartLines');
+function renderCart(){
+ const qty=cart.reduce((n,x)=>n+x.qty,0);document.getElementById('cartCount').textContent=qty;
+ document.getElementById('headerCart').textContent='🛒'+(qty?' '+qty:'');
+ if(!cart.length){cartLines.innerHTML='<p style="color:#777">Your cart is empty.</p>';return;}
+ cartLines.innerHTML=cart.map((x,i)=>`<div class="cart-line"><span>${x.name} × ${x.qty}</span><span><button type="button" data-minus="${i}">−</button><button type="button" data-plus="${i}">+</button></span></div>`).join('');
+ cartLines.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>{let i=+b.dataset.minus;cart[i].qty--;if(!cart[i].qty)cart.splice(i,1);renderCart();});
+ cartLines.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>{cart[+b.dataset.plus].qty++;renderCart();});
+}
+function addProductToCart(c){
+ const name=c.dataset.name;
+ let images=[];try{images=JSON.parse(c.dataset.imageUrls||'[]');}catch(e){}
+ const photo=c.querySelector('.product-photo');
+ const selectedImage=c.dataset.selectedImage||images[0]||(photo?photo.src:'');
+ const imageIndex=Math.max(0,images.indexOf(selectedImage));
+ const item={
+   id:c.dataset.id||'',
+   name,
+   qty:1,
+   image:selectedImage,
+   imageIndex,
+   price:c.querySelector('.price')?.textContent.trim()||'Price on request',
+   description:c.querySelector('.product-desc')?.textContent.trim()||'Contact us for product details and availability.'
+ };
+ const found=cart.find(x=>x.name===name&&x.image===item.image);
+ if(found)found.qty++;
+ else cart.push(item);
+ renderCart();
+}
+function productShareLink(item){
+ const params=new URLSearchParams({id:item.id||'',photo:String(item.imageIndex||0)});
+ return location.origin+'/.netlify/functions/product-share?'+params.toString();
+}
+cards.forEach(c=>{
+ c.querySelector('.cart-add').addEventListener('click',e=>{e.stopPropagation();addProductToCart(c);});
+ c.addEventListener('click',e=>{if(e.target.closest('.cart-add'))return;openProductModal(c);});
+});
+const productModal=document.getElementById('productModal');let selectedProduct=null;
+function openProductModal(c){
+ selectedProduct=c;
+ c.dataset.selectedImage='';
+ const source=c.querySelector('.product-image');const visual=document.getElementById('quickVisual');visual.innerHTML='';
+ const photo=source.querySelector('.product-photo');const pair=source.querySelector('.product-photo-pair');
+ let galleryUrls=[];
+ try{galleryUrls=JSON.parse(c.dataset.imageUrls||'[]');}catch(e){}
+ c.dataset.selectedImage=galleryUrls[0]||'';
+ if(galleryUrls.length>1){
+   const gallery=document.createElement('div');gallery.className='quick-gallery';
+   const main=document.createElement('img');main.className='quick-gallery-main';main.src=galleryUrls[0];main.alt=c.dataset.name||'Product photo';gallery.appendChild(main);
+   const thumbs=document.createElement('div');thumbs.className='quick-thumbs';
+   galleryUrls.slice(0,10).forEach((url,index)=>{
+     const btn=document.createElement('button');if(index===0)btn.classList.add('active');btn.type='button';
+     const thumb=document.createElement('img');thumb.src=url;thumb.alt='Product photo '+(index+1);btn.appendChild(thumb);
+     btn.addEventListener('click',()=>{
+  c.dataset.selectedImage=url;
+  main.src=url;
+  thumbs.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+});
+     thumbs.appendChild(btn);
+   });
+   gallery.appendChild(thumbs);visual.appendChild(gallery);
+ }else if(photo){const img=photo.cloneNode(true);img.removeAttribute('id');visual.appendChild(img);}
+ else if(pair){visual.appendChild(pair.cloneNode(true));}
+ else {const emoji=source.querySelector('.visual');if(emoji)visual.appendChild(emoji.cloneNode(true));}
+ document.getElementById('quickBrand').textContent=c.querySelector('.product-brand')?.textContent||'ABDUL RAUF GIFT CENTER';
+ document.getElementById('quickTitle').textContent=c.querySelector('.product-title')?.textContent||c.dataset.name||'Product';
+ const price=c.querySelector('.price')?.textContent.trim()||'Price on request';
+ const oldPrice=c.querySelector('.old-price')?.textContent.trim();document.getElementById('quickPrice').textContent=oldPrice?price+'  '+oldPrice:price;
+ document.getElementById('quickDesc').textContent=c.querySelector('.product-desc')?.textContent.trim()||'Contact us for product details and availability.';
+ productModal.classList.add('open');productModal.setAttribute('aria-hidden','false');document.body.classList.add('product-modal-open');
+}
+function closeProductModal(){productModal.classList.remove('open');productModal.setAttribute('aria-hidden','true');document.body.classList.remove('product-modal-open');selectedProduct=null;}
+productModal.querySelector('.quick-close').addEventListener('click',closeProductModal);
+productModal.addEventListener('click',e=>{if(e.target===productModal)closeProductModal();});
+document.getElementById('quickAdd').addEventListener('click',()=>{if(selectedProduct){addProductToCart(selectedProduct);closeProductModal();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&productModal.classList.contains('open'))closeProductModal();});
+function openCart(){checkout.classList.add('open');renderCart();}
+document.getElementById('openCart').onclick=openCart;document.getElementById('headerCart').onclick=openCart;
+document.getElementById('closeCart').onclick=()=>checkout.classList.remove('open');
+checkout.addEventListener('click',e=>{if(e.target===checkout)checkout.classList.remove('open')});
+document.getElementById('orderForm').addEventListener('submit',e=>{
+ e.preventDefault();if(!cart.length){alert('Your cart is empty. Add a product first.');return;}
+ const payment=document.querySelector('input[name="payment"]:checked')?.value;if(!payment){alert('Choose a payment method.');return;}
+ const name=document.getElementById('customerName').value.trim(),phone=document.getElementById('customerPhone').value.trim(),address=document.getElementById('customerAddress').value.trim(),note=document.getElementById('customerNote').value.trim();
+ const items=cart.map(x=>`- ${x.name} x ${x.qty} (price to be confirmed)\n  Product link: ${productShareLink(x)}`).join('\n\n');
+ const msg=`Hello Abdul Jaleel! I want to place an order:\n\n${items}\n\nName: ${name}\nPhone: ${phone}\nAddress / Pickup: ${address}\nPayment: ${payment}${note?'\nNote: '+note:''}\n\nPlease confirm availability and total price.`;
+ window.open('https://wa.me/923112348724?text='+encodeURIComponent(msg),'_blank','noopener');
+});
+</script>
+</body>
+</html>
